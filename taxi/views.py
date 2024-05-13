@@ -68,10 +68,10 @@ class CarDetailView(LoginRequiredMixin, generic.DetailView):
 
         if user in car.drivers.all():
             car.drivers.remove(user)
-            car.save()
         else:
             car.drivers.add(user)
-            car.save()
+
+        car.save()
 
         return redirect(reverse_lazy("taxi:car-detail", kwargs={"pk": car.pk}))
 
